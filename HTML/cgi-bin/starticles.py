@@ -1,0 +1,10 @@
+import cgi,cgitb,os,sqlite3
+cgitb.enable()
+conn=sqlite3.connect('e-articles.db')
+form=cgi.FieldStorage()
+id1=form.getvalue('id')
+d1=conn.execute("select Content from SArticles where Aid=?",(id1,))
+data1=d1.fetchall()
+print("Content-type:text/html")
+print()
+print("""<html><body>""",data1[0][0],"""</body></html>""")
